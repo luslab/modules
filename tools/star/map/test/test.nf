@@ -4,12 +4,12 @@
 nextflow.preview.dsl=2
 
 // Log
-log.info ("Starting STAR module")
+log.info ("Starting STAR mapping module")
 
 /* Module inclusions 
 --------------------------------------------------------------------------------------*/
 
-include star from './star.nf' addParams(star_custom_args: 
+include map from '../main.nf' addParams(star_custom_args: 
       "--genomeLoad NoSharedMemory \
       --outFilterMultimapNmax 1 \
       --outFilterMultimapScoreRange 1 \
@@ -46,12 +46,12 @@ testMetaData = [
 // Run workflow
 workflow {
     // Run star
-    star( ch_testData )
+    map( ch_testData )
 
     // Collect file names and view output
-    star.out.bamFiles.collect() | view
-    star.out.sjFiles.collect() | view
-    star.out.finalLogFiles.collect() | view
-    star.out.outLogFiles.collect() | view
-    star.out.progressLogFiles.collect() | view
+    map.out.samFiles.collect() | view
+    map.out.sjFiles.collect() | view
+    map.out.finalLogFiles.collect() | view
+    map.out.outLogFiles.collect() | view
+    map.out.progressLogFiles.collect() | view
 }
