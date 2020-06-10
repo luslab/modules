@@ -21,23 +21,22 @@ params.internal_custom_args = ''
 // Check if globals need to 
 nfUtils.check_internal_overrides(module_name, params)
 
-//--runThreadsN option defines the number of threads to be used for genome generation, it has to be set to the number of available cores on the server node.
-//set to task cpus
-params.internal_run_threads_task_cpus = true
-
 //--outfile name prefix
 // Set to sample ID
 params.internal_outfile_prefix_sampleid = true
+
+//Switch for paired-end files 
+params.internal_paired_end = false
 
 // Trimming reusable component
 process map {
     tag "${sample_id}"
 
-    publishDir "${params.internal_outdir}/${params.internal_process_name}",
+    publishDir "star/map/${params.internal_outdir}/${params.internal_process_name}",
         mode: "copy", overwrite: true
 
     input:
-      tuple val(sample_id), path(reads), path(star_index)
+      tuple val(sample_id), path(reads), /*path(reads2),*/ path(star_index)
 
     output:
       //tuple val(sample_id), path("*Aligned.*.out.*"), emit: bamFiles //output in work directory is sam format -> emit: samFiles?, and replace path by .sam*
@@ -51,8 +50,11 @@ process map {
     shell:
     
     // Set the main arguments
-    star_args = ''
-    star_args += "--genomeDir $star_index --readFilesIn $reads "
+    if (params.internal_paired_end){
+      star_args = "--genomeDir $star_index --readFilesIn $reads $reads2 "
+    } else {
+      star_args = "--genomeDir $star_index --readFilesIn $reads "
+    }
 
     // Combining the custom arguments and creating star args
     if (params.internal_custom_args){
@@ -60,17 +62,12 @@ process map {
     }
 
     //RunThread param
-    if (params.internal_run_threads_task_cpus){
      star_args += "--runThreadN $task.cpus "
-    }
 
     //outfile name prefix
     if (params.internal_outfile_prefix_sampleid){
       star_args += "--outFileNamePrefix ${sample_id}. "
     }
-
-    // Ouput prefix the files with the file name
-    //output_prefix = reads.simpleName
 
     // Set memory constraints
     avail_mem = task.memory ? "--limitGenomeGenerateRAM ${task.memory.toBytes() - 100000000}" : ''
