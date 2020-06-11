@@ -18,15 +18,15 @@ params.internal_process_name = 'map'
 // STAR parameters
 params.internal_custom_args = ''
 
-// Check if globals need to 
-nfUtils.check_internal_overrides(module_name, params)
-
 //--outfile name prefix
 // Set to sample ID
 params.internal_outfile_prefix_sampleid = true
 
 //Switch for paired-end files 
 params.internal_paired_end = false
+
+// Check if globals need to 
+nfUtils.check_internal_overrides(module_name, params)
 
 // Trimming reusable component
 process map {
@@ -36,11 +36,11 @@ process map {
         mode: "copy", overwrite: true
 
     input:
-      tuple val(sample_id), path(reads), /*path(reads2),*/ path(star_index)
+      tuple val(sample_id), path(reads), path(star_index)
 
     output:
-      //tuple val(sample_id), path("*Aligned.*.out.*"), emit: bamFiles //output in work directory is sam format -> emit: samFiles?, and replace path by .sam*
-      tuple val(sample_id), path("*.sam"), emit: samFiles
+      tuple val(sample_id), path("*Aligned.*.out.*"), emit: bamFiles
+      //tuple val(sample_id), path("*.sam"), emit: samFiles
       tuple val(sample_id), path("*SJ.out.tab"), emit: sjFiles
       tuple val(sample_id), path("*Log.final.out"), emit: finalLogFiles
       tuple val(sample_id), path("*Log.out"), emit: outLogFiles
@@ -51,7 +51,7 @@ process map {
     
     // Set the main arguments
     if (params.internal_paired_end){
-      star_args = "--genomeDir $star_index --readFilesIn $reads $reads2 "
+      star_args = "--genomeDir $star_index --readFilesIn ${reads[0]} ${reads[1]} "
     } else {
       star_args = "--genomeDir $star_index --readFilesIn $reads "
     }
@@ -73,11 +73,8 @@ process map {
     avail_mem = task.memory ? "--limitGenomeGenerateRAM ${task.memory.toBytes() - 100000000}" : ''
     avail_mem += task.memory ? " --limitBAMsortRAM ${task.memory.toBytes() - 100000000}" : ''
     star_args += avail_mem
-
-    println star_args
     
     """
     STAR $star_args
     """
 }
-//STAR $star_args --runThreadN ${task.cpus} --outFileNamePrefix ${output_prefix}. $avail_mem
