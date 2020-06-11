@@ -9,7 +9,7 @@ log.info ("Starting STAR mapping module")
 /* Module inclusions 
 --------------------------------------------------------------------------------------*/
 
-/*include map as paired_end_map from '../main.nf' addParams(map_custom_args: 
+include map as paired_end_map from '../main.nf' addParams(map_custom_args: 
       "--genomeLoad NoSharedMemory \
       --outFilterMultimapNmax 1 \
       --outFilterMultimapScoreRange 1 \
@@ -22,9 +22,9 @@ log.info ("Starting STAR mapping module")
       --outFilterScoreMin 10  \
       --alignEndsType Extend5pOfRead1 \
       --twopassMode Basic \
-      --outSAMtype BAM SortedByCoordinate", map_paired_end: true, map_process_name: 'paired_end_map')*/
+      --outSAMtype BAM SortedByCoordinate", map_paired_end: true, map_process_name: 'paired_end_map')
 
-include map as single_end_map from '../main.nf' addParams(map_custom_args: 
+/*include map as single_end_map from '../main.nf' addParams(map_custom_args: 
       "--genomeLoad NoSharedMemory \
       --outFilterMultimapNmax 1 \
       --outFilterMultimapScoreRange 1 \
@@ -37,7 +37,7 @@ include map as single_end_map from '../main.nf' addParams(map_custom_args:
       --outFilterScoreMin 10  \
       --alignEndsType Extend5pOfRead1 \
       --twopassMode Basic \
-      --outSAMtype BAM SortedByCoordinate", map_process_name: 'single_end_map')
+      --outSAMtype BAM SortedByCoordinate", map_process_name: 'single_end_map')*/
 
 /*------------------------------------------------------------------------------------*/
 /* Define input channels
@@ -48,13 +48,13 @@ params.genome_index = "$baseDir/input/reduced_star_index"
 
 //test data for single-end reads
 testMetaData = [
-  ['Sample1', "$baseDir/input/prpf8_eif4a3_rep1.Unmapped.fq"],
-  ['Sample2', "$baseDir/input/prpf8_eif4a3_rep2.Unmapped.fq"]
+  ['Sample1', "$baseDir/input/prpf8_eif4a3_rep1.Unmapped.fq.gz"],
+  ['Sample2', "$baseDir/input/prpf8_eif4a3_rep2.Unmapped.fq.gz"]
 ]
 
 //test data for paired-end reads
 testMetaDataPairedEnd = [
-  ['Sample1', "$baseDir/input/paired_end/ENCFF282NGP_chr6_3400000_3500000_1000reads_1.fq", "$baseDir/input/paired_end/ENCFF282NGP_chr6_3400000_3500000_1000reads_2.fq"],
+  ['Sample1', "$baseDir/input/paired_end/ENCFF282NGP_chr6_3400000_3500000_1000reads_1.fq.bz2", "$baseDir/input/paired_end/ENCFF282NGP_chr6_3400000_3500000_1000reads_2.fq.bz2"],
 ]
 
 //Channel for single-end reads 
@@ -76,7 +76,7 @@ testMetaDataPairedEnd = [
 // Run workflow
 // Choose between single-end and paired-end reads
 workflow {
-    /*// Run map on paired-end reads
+    // Run map on paired-end reads
     paired_end_map( ch_testData_paired_end )
 
     // Collect file names and view output
@@ -85,9 +85,9 @@ workflow {
     paired_end_map.out.sjFiles.collect() | view
     paired_end_map.out.finalLogFiles.collect() | view
     paired_end_map.out.outLogFiles.collect() | view
-    paired_end_map.out.progressLogFiles.collect() | view */
+    paired_end_map.out.progressLogFiles.collect() | view 
     
-    // Run map on single-end reads
+    /*// Run map on single-end reads
     single_end_map( ch_testData )
 
     // Collect file names and view output
@@ -96,5 +96,5 @@ workflow {
     single_end_map.out.sjFiles.collect() | view
     single_end_map.out.finalLogFiles.collect() | view
     single_end_map.out.outLogFiles.collect() | view
-    single_end_map.out.progressLogFiles.collect() | view
+    single_end_map.out.progressLogFiles.collect() | view */
 }

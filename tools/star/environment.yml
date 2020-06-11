@@ -6,8 +6,12 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  ## basic packages
+  ## basic packages and dependencies
   - pigz=2.3.4
+  - perl=5.26.2
 
   ## bioconda packages, see above
   - star=2.7.3a
+  - perl-io-uncompress-bunzip2
+  - perl-io-uncompress-gunzip
+

@@ -69,6 +69,24 @@ process map {
       star_args += "--outFileNamePrefix ${sample_id}. "
     }
 
+    // Compression parameters
+    //if ("$reads" == ~/(.gz)/){
+    if (params.internal_process_name == 'single_end_map'){
+      if (file("$baseDir/input/*.gz", checkIfExists: true)){
+        star_args += "--readFilesCommand gunzip -c "
+      } 
+      if (file("$baseDir/input/*.bz2", checkIfExists: true)){
+        star_args += "--readFilesCommand bunzip2 -c "
+      }
+    } else {
+      if (file("$baseDir/input/paired_end/*.gz", checkIfExists: true)){
+        star_args += "--readFilesCommand gunzip -c "
+      } 
+      if (file("$baseDir/input/paired_end/*.bz2", checkIfExists: true)){
+        star_args += "--readFilesCommand bunzip2 -c "
+      }
+    }
+
     // Set memory constraints
     avail_mem = task.memory ? "--limitGenomeGenerateRAM ${task.memory.toBytes() - 100000000}" : ''
     avail_mem += task.memory ? " --limitBAMsortRAM ${task.memory.toBytes() - 100000000}" : ''
