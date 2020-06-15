@@ -9,7 +9,7 @@ log.info ("Starting STAR mapping module")
 /* Module inclusions 
 --------------------------------------------------------------------------------------*/
 
-include map as paired_end_map from '../main.nf' addParams(map_custom_args: 
+/*include map as paired_end_map from '../main.nf' addParams(map_custom_args: 
       "--genomeLoad NoSharedMemory \
       --outFilterMultimapNmax 1 \
       --outFilterMultimapScoreRange 1 \
@@ -22,9 +22,9 @@ include map as paired_end_map from '../main.nf' addParams(map_custom_args:
       --outFilterScoreMin 10  \
       --alignEndsType Extend5pOfRead1 \
       --twopassMode Basic \
-      --outSAMtype BAM SortedByCoordinate", map_paired_end: true, map_process_name: 'paired_end_map')
+      --outSAMtype BAM SortedByCoordinate", map_paired_end: true, map_process_name: 'paired_end_map')*/
 
-/*include map as single_end_map from '../main.nf' addParams(map_custom_args: 
+include map as single_end_map from '../main.nf' addParams(map_custom_args: 
       "--genomeLoad NoSharedMemory \
       --outFilterMultimapNmax 1 \
       --outFilterMultimapScoreRange 1 \
@@ -37,7 +37,7 @@ include map as paired_end_map from '../main.nf' addParams(map_custom_args:
       --outFilterScoreMin 10  \
       --alignEndsType Extend5pOfRead1 \
       --twopassMode Basic \
-      --outSAMtype BAM SortedByCoordinate", map_process_name: 'single_end_map')*/
+      --outSAMtype BAM SortedByCoordinate", map_process_name: 'single_end_map')
 
 /*------------------------------------------------------------------------------------*/
 /* Define input channels
@@ -77,17 +77,17 @@ testMetaDataPairedEnd = [
 // Choose between single-end and paired-end reads
 workflow {
     // Run map on paired-end reads
-    paired_end_map( ch_testData_paired_end )
+    /*paired_end_map( ch_testData_paired_end )
 
     // Collect file names and view output
     paired_end_map.out.bamFiles.collect() | view // // custom args changes default output to bam files instead of sam files
-    //paired_end_map.out.samFiles.collect() | view -> default output
+    //paired_end_map.out.samFiles.collect() | view 
     paired_end_map.out.sjFiles.collect() | view
     paired_end_map.out.finalLogFiles.collect() | view
     paired_end_map.out.outLogFiles.collect() | view
-    paired_end_map.out.progressLogFiles.collect() | view 
+    paired_end_map.out.progressLogFiles.collect() | view */
     
-    /*// Run map on single-end reads
+    // Run map on single-end reads
     single_end_map( ch_testData )
 
     // Collect file names and view output
@@ -96,5 +96,5 @@ workflow {
     single_end_map.out.sjFiles.collect() | view
     single_end_map.out.finalLogFiles.collect() | view
     single_end_map.out.outLogFiles.collect() | view
-    single_end_map.out.progressLogFiles.collect() | view */
+    single_end_map.out.progressLogFiles.collect() | view 
 }

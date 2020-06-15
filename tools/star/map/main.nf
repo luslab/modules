@@ -39,8 +39,8 @@ process map {
       tuple val(sample_id), path(reads), path(star_index)
 
     output:
-      tuple val(sample_id), path("*Aligned.*.out.*"), emit: bamFiles
-      //tuple val(sample_id), path("*.sam"), emit: samFiles
+      tuple val(sample_id), path("*.sam"), optional: true, emit: samFiles
+      tuple val(sample_id), path("*.bam"), optional: true, emit: bamFiles
       tuple val(sample_id), path("*SJ.out.tab"), emit: sjFiles
       tuple val(sample_id), path("*Log.final.out"), emit: finalLogFiles
       tuple val(sample_id), path("*Log.out"), emit: outLogFiles
@@ -69,22 +69,18 @@ process map {
       star_args += "--outFileNamePrefix ${sample_id}. "
     }
 
-    // Compression parameters
-    //if ("$reads" == ~/(.gz)/){
-    if (params.internal_process_name == 'single_end_map'){
-      if (file("$baseDir/input/*.gz", checkIfExists: true)){
-        star_args += "--readFilesCommand gunzip -c "
-      } 
-      if (file("$baseDir/input/*.bz2", checkIfExists: true)){
-        star_args += "--readFilesCommand bunzip2 -c "
-      }
+    // Compression parameters 
+    if (params.internal_paired_end) {
+      test_file_name = "${reads[0]}"
     } else {
-      if (file("$baseDir/input/paired_end/*.gz", checkIfExists: true)){
-        star_args += "--readFilesCommand gunzip -c "
-      } 
-      if (file("$baseDir/input/paired_end/*.bz2", checkIfExists: true)){
-        star_args += "--readFilesCommand bunzip2 -c "
-      }
+      test_file_name = "$reads"
+    }
+
+    if ("$test_file_name" =~ /(.gz$)/){
+      star_args += "--readFilesCommand gunzip -c "
+    } 
+    if ("$test_file_name" =~ /(.bz2$)/){
+      star_args += "--readFilesCommand bunzip2 -c "
     }
 
     // Set memory constraints
