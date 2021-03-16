@@ -1,0 +1,5 @@
+1) Make a test set of HiFi reads from HG002 that yield at least one contig.
+2) Make a test set of short reads from HG002 parents to test the haplotype resolution.
+3) Optional inputs.
+4) Optional outputs.
+5) Cover the main functionality with tests.
