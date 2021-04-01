@@ -1,8 +1,0 @@
-- name: hifiasm 
-  command: nextflow run ./tests/software/hifiasm -entry test_hifiasm_hifi_only -c tests/config/nextflow.config
-  tags:
-    - hifiasm
-    - test_hifiasm_hifi_only
-  files:
-    - path: ./output/hifiasm/test.asm.p_ctg.gfa
-    - path: ./output/hifiasm/test.asm.a_ctg.gfa
