@@ -49,7 +49,7 @@ process HIFIASM {
         -o ${prefix}.asm \\
         -t $task.cpus \\
         ${prefix}.fastq.gz
-    
+
     hifiasm --version > ${software}.version.txt || exit 0
     """
 }
