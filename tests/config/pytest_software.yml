@@ -66,31 +66,31 @@ bismark_genome_preparation:
   - software/bismark/genome_preparation/**
   - tests/software/bismark/genome_preparation/**
 
-blast_makeblastdb:
-  - software/blast/makeblastdb/**
-  - tests/software/blast/makeblastdb/**
-
 blast_blastn:
   - software/blast/blastn/**
   - tests/software/blast/blastn/**
 
-bowtie_build:
-  - software/bowtie/build/**
-  - tests/software/bowtie/build_test/**
+blast_makeblastdb:
+  - software/blast/makeblastdb/**
+  - tests/software/blast/makeblastdb/**
+
+bowtie2_align:
+  - software/bowtie2/align/**
+  - software/bowtie2/build/**
+  - tests/software/bowtie2/align/**
+
+bowtie2_build:
+  - software/bowtie2/build/**
+  - tests/software/bowtie2/build_test/**
 
 bowtie_align:
   - software/bowtie/align/**
   - software/bowtie/build/**
   - tests/software/bowtie/align/**
 
-bowtie2_build:
-  - software/bowtie2/build/**
-  - tests/software/bowtie2/build_test/**
-
-bowtie2_align:
-  - software/bowtie2/align/**
-  - software/bowtie2/build/**
-  - tests/software/bowtie2/align/**
+bowtie_build:
+  - software/bowtie/build/**
+  - tests/software/bowtie/build_test/**
 
 bwa_index:
   - software/bwa/index/**
@@ -171,6 +171,10 @@ gffread:
 gunzip:
   - software/gunzip/**
   - tests/software/gunzip/**
+
+hifiasm:
+  - software/hifiasm/**
+  - tests/software/hifiasm/**
 
 ivar_consensus:
   - software/ivar/consensus/**
@@ -313,10 +317,10 @@ trimgalore:
   - software/trimgalore/**
   - tests/software/trimgalore/**
 
-untar:
-  - software/untar/**
-  - tests/software/untar/**
-
 ucsc_bedgraphtobigwig:
   - software/ucsc/bedgraphtobigwig/**
   - tests/software/ucsc/bedgraphtobigwig/**
+
+untar:
+  - software/untar/**
+  - tests/software/untar/**
