@@ -2,12 +2,16 @@
 
 nextflow.enable.dsl = 2
 
-include { HIFIASM } from '../../../software/hifiasm/main.nf' addParams( options: [:] )
+include { HIFIASM } from '../../../software/hifiasm/main.nf' addParams( options: [[args:'-f0'] )
 
-workflow test_hifiasm {
-    
-    input = [ [ id:'test', single_end:false ], // meta map
-              file(params.test_data['sarscov2']['illumina']['test_paired_end_bam'], checkIfExists: true) ]
+/* 
+ * Test with long reads only
+ */
+// Test dataset is first 5 reads from one run of the HG002 human genome:
+// fastq-dump --stdout SRR10382244 | head -n 20 > test.fastq
+workflow test_hifiasm_hifi_only {
 
+    def input = []
+    input = [ [ id:'test' ], // meta map
+              [ file("${launchDir}/tests/data/genomics/homo_sapiens/fastq/test.fastq.gz", checkIfExists: true) ] ]
     HIFIASM ( input )
-}
