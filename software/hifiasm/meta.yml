@@ -1,16 +1,21 @@
 name: hifiasm
 ## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: Run de novo genome assembly wiith hifiasm based on PacBio HiFi reads
 keywords:
-  - sort
+  - genome assembly
+  - pacbaio
+  - hifi reads
+  - consensus reads
+  - long reads
+  - fastq
 tools:
   - hifiasm:
       ## TODO nf-core: Add a description and other details for the software below
-      description: Haplotype-resolved assembler for accurate Hifi reads
-      homepage: None
-      documentation: None
-      tool_dev_url: None
-      doi: ""
+      description: Haplotype-resolved assembler for accurate HiFi reads
+      homepage: https://github.com/chhylp123/hifiasm
+      documentation: https://github.com/chhylp123/hifiasm
+      tool_dev_url: https://github.com/chhylp123/hifiasm
+      doi: "10.1038/s41592-020-01056-5"
       licence: ['MIT']
 
 ## TODO nf-core: Add a description of all of the variables used as input
