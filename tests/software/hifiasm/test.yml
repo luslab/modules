@@ -6,7 +6,6 @@
     - hifiasm
     - test_hifiasm_hifi_only
   files:
-  files:
     - path: ./output/hifiasm/test.asm.p_ctg.gfa
       # md5sum: ...
     - path: ./output/hifiasm/test.asm.a_ctg.gfa
