@@ -8,3 +8,7 @@
       md5sum: aefe8ad5740527046de03327d71c5f90
     - path: output/hifiasm/test.asm.p_ctg.gfa
       md5sum: 9bb51686fd029ebdad26fe540599167d
+    - path: output/hifiasm/test.asm.p_utg.gfa
+      md5sum: 97446fb95de214835c36b10a90838486
+    - path: output/hifiasm/test.asm.r_utg.gfa
+      md5sum: 97446fb95de214835c36b10a90838486

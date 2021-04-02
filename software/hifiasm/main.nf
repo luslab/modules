@@ -33,9 +33,13 @@ process HIFIASM {
     tuple val(meta), path(reads)
 
     output:
-    tuple val(meta), path("*.asm.p_ctg.gfa") , emit: primary_contigs
-    tuple val(meta), path("*.asm.a_ctg.gfa") , emit: alternate_contigs
-    path  "*.version.txt"                    , emit: version
+    tuple val(meta), path("*.r_utg.gfa")      , emit: raw_unitigs
+    tuple val(meta), path("*.p_utg.gfa")      , emit: processed_unitigs, optional: true
+    tuple val(meta), path("*.asm.p_ctg.gfa")  , emit: primary_contigs, optional: true
+    tuple val(meta), path("*.asm.a_ctg.gfa")  , emit: alternate_contigs, optional: true
+    tuple val(meta), path("*.hap1.p_ctg.gfa") , emit: paternal_contigs, optional: true
+    tuple val(meta), path("*.hap2.p_ctg.gfa") , emit: maternal_contigs, optional: true
+    path  "*.version.txt"                     , emit: version
 
     script:
     def software = getSoftwareName(task.process)
