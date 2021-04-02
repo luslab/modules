@@ -5,6 +5,6 @@
     - hifiasm_hifi_only
   files:
     - path: output/hifiasm/test.asm.a_ctg.gfa
-      md5sum: d41d8cd98f00b204e9800998ecf8427e
+      md5sum: aefe8ad5740527046de03327d71c5f90
     - path: output/hifiasm/test.asm.p_ctg.gfa
-      md5sum: d41d8cd98f00b204e9800998ecf8427e
+      md5sum: 9bb51686fd029ebdad26fe540599167d
