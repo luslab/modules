@@ -1,13 +1,10 @@
-## TODO nf-core: Please run the following command to build this file:
-#                nf-core modules create-test-yml hifiasm/None
-- name: hifiasm 
-  command: nextflow run ./tests/software/hifiasm -entry test_hifiasm_hifi_only -c tests/config/nextflow.config
+- name: hifiasm test_hifiasm_hifi_only
+  command: nextflow run tests/software/hifiasm -entry test_hifiasm_hifi_only -c tests/config/nextflow.config
   tags:
     - hifiasm
-    - test_hifiasm_hifi_only
+    - hifiasm_hifi_only
   files:
-    - path: ./output/hifiasm/test.asm.p_ctg.gfa
-      # md5sum: ...
-    - path: ./output/hifiasm/test.asm.a_ctg.gfa
-      # md5sum: ...
-
+    - path: output/hifiasm/test.asm.a_ctg.gfa
+      md5sum: d41d8cd98f00b204e9800998ecf8427e
+    - path: output/hifiasm/test.asm.p_ctg.gfa
+      md5sum: d41d8cd98f00b204e9800998ecf8427e
