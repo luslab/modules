@@ -7,7 +7,6 @@
     - path: output/hifiasm/test.asm.a_ctg.gfa
       md5sum: aefe8ad5740527046de03327d71c5f90
     - path: output/hifiasm/test.asm.ec.bin
-      md5sum: 3d3ef08f24a86163434fe92f62eaca87
     - path: output/hifiasm/test.asm.ovlp.reverse.bin
       md5sum: 531ea35e41d48595142d6e2f8b6873bc
     - path: output/hifiasm/test.asm.ovlp.source.bin
