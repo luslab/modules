@@ -52,7 +52,6 @@ process HIFIASM {
     """
     [ ! -f  ${prefix}.fastq.gz ] && ln -s ${reads} ${prefix}.fastq.gz
 
-
     hifiasm $options.args \\
         -o ${prefix}.asm \\
         -t $task.cpus \\
