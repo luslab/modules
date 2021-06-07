@@ -1,0 +1,8 @@
+- name: pasa pipeline test_pasa_pipeline
+  command: nextflow run tests/software/pasa/pipeline -entry test_pasa_pipeline -c tests/config/nextflow.config
+  tags:
+    - pasa/pipeline
+    - pasa
+  files:
+    - path: output/pasa/trainingSetComplete.gff3
+      md5sum: d41d8cd98f00b204e9800998ecf8427e

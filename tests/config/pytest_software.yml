@@ -475,6 +475,10 @@ pangolin:
   - software/pangolin/**
   - tests/software/pangolin/**
 
+pasa/pipeline:
+  - software/pasa/pipeline/**
+  - tests/software/pasa/pipeline/**
+
 picard/collectmultiplemetrics:
   - software/picard/collectmultiplemetrics/**
   - tests/software/picard/collectmultiplemetrics/**
