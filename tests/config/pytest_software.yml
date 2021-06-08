@@ -479,6 +479,10 @@ pasa/pipeline:
   - software/pasa/pipeline/**
   - tests/software/pasa/pipeline/**
 
+pasa/seqclean:
+  - software/pasa/seqclean/**
+  - tests/software/pasa/seqclean/**
+
 picard/collectmultiplemetrics:
   - software/picard/collectmultiplemetrics/**
   - tests/software/picard/collectmultiplemetrics/**

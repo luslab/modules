@@ -1,0 +1,47 @@
+name: pasa_seqclean
+description: strip the poly-A, trim vector, and discard low quality sequences.
+keywords:
+  - annotation
+  - genome
+  - transcriptome
+tools:
+  - pasa:
+      description: PASA, acronym for Program to Assemble Spliced Alignments (and pronounced 'pass-uh'), is a eukaryotic genome annotation tool that exploits spliced alignments of expressed transcript sequences to automatically model gene structures, and to maintain gene structure annotation consistent with the most recently available experimental sequence data. PASA also identifies and classifies all splicing variations supported by the transcript alignments.
+      homepage: https://github.com/PASApipeline/PASApipeline
+      documentation: https://github.com/PASApipeline/PASApipeline/wiki
+      tool_dev_url: None
+      doi: "10.1093/nar/gkg770"
+      licence: ['Broad Institute']
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - transcripts:
+      type: file
+      description: ESTs, cDNAs or transcript model sequences in FASTA format
+      pattern: "*.fa"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - version:
+      type: file
+      description: File containing software version
+      pattern: "*.{version.txt}"
+  - fasta:
+      type: file
+      description: cleaned ESTs, cDNAs or transcript model sequences in FASTA format
+      pattern: "*.{clean}"
+  - txt:
+      type: file
+      description: table with information on the cleaned sequences
+      pattern: "*.{cln}"
+
+authors:
+  - "@charles-plessy"

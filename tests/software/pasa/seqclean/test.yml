@@ -1,0 +1,10 @@
+- name: pasa seqclean test_pasa_pipeline
+  command: nextflow run tests/software/pasa/seqclean -entry test_pasa_pipeline -c tests/config/nextflow.config
+  tags:
+    - pasa
+    - pasa/seqclean
+  files:
+    - path: output/pasa/transcriptome.fasta.clean
+      md5sum: 1b6ce5862a1715c354d095f133964e41
+    - path: output/pasa/transcriptome.fasta.cln
+      md5sum: 6b899cceb939083eeb338c19efaacde1
