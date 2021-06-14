@@ -31,9 +31,10 @@ process AUGUSTUS_COPYMODEL {
     def software = getSoftwareName(task.process)
 
     """
-    # Copy the species files out of the location in the AUGUSTUS image.
-    mkdir -p config/species
-    cp -a $AUGUSTUS_CONFIG_PATH/species/$species config/species/
+    # Copy the species files out of the location in the AUGUSTUS image. I have no idea how this will work with conda.
+    # It looks like the AUGUSTUS config path is not even present in the bioconda installation?
+    mkdir -p config/species/$species
+    cp -r /usr/local/config/species/$species ./config/species/
 
     echo $VERSION >${software}.version.txt
     """
