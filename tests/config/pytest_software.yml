@@ -22,6 +22,10 @@ augustus/copymodel:
   - software/augustus/copymodel/**
   - tests/software/augustus/copymodel/**
 
+augustus/newspecies:
+  - software/augustus/newspecies/**
+  - tests/software/augustus/newspecies/**
+
 augustus/pretrained:
   - software/augustus/pretrained/**
   - tests/software/augustus/pretrained/**
