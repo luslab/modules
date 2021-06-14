@@ -2,11 +2,13 @@
 
 nextflow.enable.dsl = 2
 
+include { UNTAR               } from '../../../../software/untar/main.nf'               addParams( options: [:] )
 include { AUGUSTUS_PRETRAINED } from '../../../../software/augustus/pretrained/main.nf' addParams( options: [:] )
 
 workflow test_augustus_pretrained {
-    
-    input = file(params.test_data['sarscov2']['illumina']['test_single_end_bam'], checkIfExists: true)
 
-    AUGUSTUS_PRETRAINED ( input )
+    augustus_model = file('https://raw.githubusercontent.com/mjmansfi/test-datasets/modules/data/genomics/sarscov2/genome/db/augustus.tar.gz', checkIfExists: true)
+
+    UNTAR( augustus_model )
+    AUGUSTUS_PRETRAINED ( UNTAR.out.untar, 'sars_cov_2' )
 }

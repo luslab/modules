@@ -32,8 +32,8 @@ process AUGUSTUS_PRETRAINED {
     def software = getSoftwareName(task.process)
 
     """
-    mkdir -p config/species
-    cp -a $augustus_model config/species
+    mkdir -p config/species/$species
+    cp -r $augustus_model/* config/species/$species
 
     echo $VERSION >${software}.version.txt
     """
