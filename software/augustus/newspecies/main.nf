@@ -33,18 +33,19 @@ process AUGUSTUS_NEWSPECIES {
     """
     # Copy config files out of the location in the AUGUSTUS image.
     mkdir config
-    cp -a $AUGUSTUS_CONFIG_PATH/cgp       config
-    cp -a $AUGUSTUS_CONFIG_PATH/extrinsic config
-    cp -a $AUGUSTUS_CONFIG_PATH/model     config
-    cp -a $AUGUSTUS_CONFIG_PATH/profile   config
+    cp -r /usr/local/config/cgp       config
+    cp -r /usr/local/config/extrinsic config
+    cp -r /usr/local/config/model     config
+    cp -r /usr/local/config/profile   config
 
     # Copy the generic templating files out of the location in the AUGUSTUS image.
     mkdir -p config/species/generic
-    cp -a $AUGUSTUS_CONFIG_PATH/species/generic config/species
+    cp -r /usr/local/config/species/generic              config/species
+    cp -r /usr/local/config/species/template_prokaryotic config/species
     # Then, set environmental variable to ensure the new_species.pl script writes
     # the new species model to the current working directory instead of
-    # /usr/local/config/.
-    AUGUSTUS_CONFIG_PATH=\$(pwd)/config
+    # /usr/local/config/
+    export AUGUSTUS_CONFIG_PATH=\$(pwd)/config
 
     new_species.pl \\
         --species=$species
