@@ -22,6 +22,10 @@ augustus/copymodel:
   - software/augustus/copymodel/**
   - tests/software/augustus/copymodel/**
 
+augustus/pretrained:
+  - software/augustus/pretrained/**
+  - tests/software/augustus/pretrained/**
+
 bandage/image:
   - software/bandage/image/**
   - tests/software/bandage/image/**
