@@ -33,7 +33,7 @@ process AUGUSTUS_COPYMODEL {
     """
     # Copy the species files out of the location in the AUGUSTUS image.
     mkdir -p config/species
-    cp -a /usr/local/config/species/$species config/species/
+    cp -a $AUGUSTUS_CONFIG_PATH/species/$species config/species/
 
     echo $VERSION >${software}.version.txt
     """
