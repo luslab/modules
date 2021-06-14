@@ -1,37 +1,53 @@
 name: augustus_optimize
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: This process optimizes the metaparameters of an AUGUSTUS gene prediction model. The inputs are an existing AUGUSTUS model directory and a genbank file for training, typically the training set output of AUGUSTUS_SPLIT.
 keywords:
-  - sort
+  - AUGUSTUS
+  - gene prediction
+  - annotation
 tools:
   - augustus:
-      ## TODO nf-core: Add a description and other details for the software below
       description: AUGUSTUS is a gene prediction program for eukaryotes written by Mario Stanke and Oliver Keller. It can be used as an ab initio program, which means it bases its prediction purely on the sequence. AUGUSTUS may also incorporate hints on the gene structure coming from extrinsic sources such as EST, MS/MS, protein alignments and synthenic genomic alignments.
-      homepage: None
-      documentation: None
-      tool_dev_url: None
-      doi: ""
+      homepage: http://bioinf.uni-greifswald.de/augustus/
+      documentation: https://github.com/Gaius-Augustus/Augustus
+      tool_dev_url: https://github.com/Gaius-Augustus/Augustus
+      doi: "10.1093/bioinformatics/btn013"
       licence: ['Artistic Licence']
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - genbank:
       type: file
-      description: BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: A genbank file used to train an AUGUSTUS model. Typically this is the output of AUGUSTUS_FILTER.
+      pattern: "*{.gb,.gbk,.genbank}"
+  - augustus_model:
+      type: directory
+      description: A directory containing an AUGUSTUS gene prediction model.
+  - species:
+      type: string
+      description: A string with a species name. In reality, this is a subdirectory in AUGUSTUS_CONFIG_PATH/config/species/.
 
-## TODO nf-core: Add a description of all of the variables used as output
 output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
   - version:
       type: file
       description: File containing software version
-      pattern: "*.{version.txt}"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
+  - augustus_model:
+      type: directory
+      description: A directory containing an AUGUSTUS gene prediction model.
+  - species:
+      type: string
+      description: A string with a species name. In reality, this is a subdirectory in AUGUSTUS_CONFIG_PATH/config/species/.
+  - txt:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: A file with statistics about metaparameter optimization.
 
 authors:
   - "@mjmansfi"
