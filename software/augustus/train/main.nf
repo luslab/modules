@@ -22,12 +22,10 @@ process AUGUSTUS_TRAIN {
 
     input:
     tuple val(meta), path(genbank)
-    path augustus_model
-    val species
+    tuple val(species), path(augustus_model)
 
     output:
-    path "config/"          , emit: augustus_model
-    val species
+    tuple val(species), path("config/"), emit: augustus_model
     path "*.model.txt"      , emit: model_txt
     path "*.stop_codons*.txt", emit: stop_txt
     path "*.version.txt"    , emit: version

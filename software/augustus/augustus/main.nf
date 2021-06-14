@@ -22,8 +22,7 @@ process AUGUSTUS_AUGUSTUS {
 
     input:
     tuple val(meta), path(fasta)
-    path augustus_model
-    val species
+    tuple val(species), path(augustus_model)
 
     output:
     tuple val(meta), path("*.gff"), emit: gff

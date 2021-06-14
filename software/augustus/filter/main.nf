@@ -22,14 +22,12 @@ process AUGUSTUS_FILTER {
 
     input:
     tuple val(meta), path(genbank)
-    path augustus_model
-    val species
+    tuple val(species), path(augustus_model)
     path model_txt
 
     output:
-    path "config/"              , emit: augustus_model
-    val species
-    path "*.filtered.genbank"   , emit: genbank
+    tuple val(meta), path("*.filtered.genbank"), emit: genbank
+    tuple val(species), path("config/"), emit: augustus_model
     path "*.bad_genes.txt"      , emit: bad_genes_txt
     path "*.remaining_genes.txt", emit: remaining_genes_txt
     path "*.filtered_model.txt" , emit: model_txt

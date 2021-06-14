@@ -7,11 +7,11 @@ options        = initOptions(params.options)
 def VERSION = '3.4.0'
 
 process AUGUSTUS_OPTIMIZE {
-    tag '$augustus'
+    tag "$meta.id"
     label 'process_medium'
     publishDir "${params.outdir}",
         mode: params.publish_dir_mode,
-        saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), meta:[:], publish_by_meta:[]) }
+        saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), meta:meta, publish_by_meta:['id']) }
 
     conda (params.enable_conda ? "bioconda::augustus=3.4.0" : null)
     if (workflow.containerEngine == 'singularity' && !params.singularity_pull_docker_container) {
@@ -21,18 +21,17 @@ process AUGUSTUS_OPTIMIZE {
     }
 
     input:
-    path augustus_model
-    val species
-    path genbank
+    tuple val(meta), path(genbank)
+    tuple val(species), path(augustus_model)
 
     output:
-    path "config/"                   , emit: augustus_model
-    val species
+    tuple val(species), path("config/"), emit: augustus_model
     path "*.optimized_metaparams.txt", emit: txt
     path "*.version.txt"             , emit: version
 
     script:
     def software = getSoftwareName(task.process)
+    def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
 
     """
     AUGUSTUS_CONFIG_PATH=$augustus_model

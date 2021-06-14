@@ -24,8 +24,7 @@ process AUGUSTUS_NEWSPECIES {
     val species
 
     output:
-    path "config/"      , emit: augustus_model
-    val species
+    tuple val(species), path("config/"), emit: augustus_model
     path "*.version.txt", emit: version
 
     script:
