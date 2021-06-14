@@ -18,6 +18,10 @@ artic/minion:
   - software/artic/minion/**
   - tests/software/artic/minion/**
 
+augustus/augustus:
+  - software/augustus/augustus/**
+  - tests/software/augustus/augustus/**
+
 augustus/copymodel:
   - software/augustus/copymodel/**
   - tests/software/augustus/copymodel/**
