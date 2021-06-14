@@ -27,7 +27,8 @@ process AUGUSTUS_TRAIN {
     output:
     tuple val(species), path("config/"), emit: augustus_model
     path "*.model.txt"      , emit: model_txt
-    path "*.stop_codons*.txt", emit: stop_txt
+    path "*.non_standard_genes.txt", emit: stop_txt
+    path "*.stop_codon_freq.txt", emit: stop_txt
     path "*.version.txt"    , emit: version
 
     script:
@@ -45,10 +46,10 @@ process AUGUSTUS_TRAIN {
     # Make sure the stop codon frequencies make sense.
     grep \\
         -c "Variable stopCodonExcludedFromCDS set right" \\
-        ${prefix}.txt > ${prefix}.stop_codons.txt
+        ${prefix}.model.txt > ${prefix}.non_standard_genes.txt 2>&1
 
     tail -n 6  ${prefix}.model.txt \\
-        | head -n 3 > ${prefix}.stop_codons_2.txt
+        | head -n 3 > ${prefix}.stop_codon_freq.txt
 
     echo $VERSION >${software}.version.txt
     """
