@@ -30,6 +30,10 @@ augustus/pretrained:
   - software/augustus/pretrained/**
   - tests/software/augustus/pretrained/**
 
+augustus/train:
+  - software/augustus/train/**
+  - tests/software/augustus/train/**
+
 bandage/image:
   - software/bandage/image/**
   - tests/software/bandage/image/**
