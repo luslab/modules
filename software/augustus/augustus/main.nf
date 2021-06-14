@@ -4,6 +4,8 @@ include { initOptions; saveFiles; getSoftwareName } from './functions'
 params.options = [:]
 options        = initOptions(params.options)
 
+def VERSION = '3.4.0'
+
 process AUGUSTUS_AUGUSTUS {
     tag "$meta.id"
     label 'process_high'

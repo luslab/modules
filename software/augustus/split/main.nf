@@ -4,8 +4,10 @@ include { initOptions; saveFiles; getSoftwareName } from './functions'
 params.options = [:]
 options        = initOptions(params.options)
 
+def VERSION = '3.4.0'
+
 process AUGUSTUS_SPLIT {
-    tag '$bam'
+    tag '$augustus'
     label 'process_low'
     publishDir "${params.outdir}",
         mode: params.publish_dir_mode,
