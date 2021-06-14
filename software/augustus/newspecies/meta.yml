@@ -1,37 +1,34 @@
 name: augustus_newspecies
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: This process takes a species name as a string and initiates a new AUGUSTUS model (a directory). It outputs the AUGUSTUS model in a standardized output channel format for use with the AUGUSTUS_AUGUSTUS gene prediction process.
 keywords:
-  - sort
+  - AUGUSTUS
+  - gene prediction
+  - annotation
 tools:
   - augustus:
-      ## TODO nf-core: Add a description and other details for the software below
       description: AUGUSTUS is a gene prediction program for eukaryotes written by Mario Stanke and Oliver Keller. It can be used as an ab initio program, which means it bases its prediction purely on the sequence. AUGUSTUS may also incorporate hints on the gene structure coming from extrinsic sources such as EST, MS/MS, protein alignments and synthenic genomic alignments.
-      homepage: None
-      documentation: None
-      tool_dev_url: None
-      doi: ""
+      homepage: http://bioinf.uni-greifswald.de/augustus/
+      documentation: https://github.com/Gaius-Augustus/Augustus
+      tool_dev_url: https://github.com/Gaius-Augustus/Augustus
+      doi: "10.1093/bioinformatics/btn013"
       licence: ['Artistic Licence']
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
-      type: file
-      description: BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+  - species:
+      type: string
+      description: A string with a species name. In reality, this is a subdirectory in AUGUSTUS_CONFIG_PATH/config/species/.
 
-## TODO nf-core: Add a description of all of the variables used as output
 output:
   - version:
       type: file
       description: File containing software version
       pattern: "*.{version.txt}"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
-      type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+  - augustus_model:
+      type: directory
+      description: A directory containing an AUGUSTUS gene prediction model.
+  - species:
+      type: string
+      description: A string with a species name. In reality, this is a subdirectory in AUGUSTUS_CONFIG_PATH/config/species/.
 
 authors:
   - "@mjmansfi"
