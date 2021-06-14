@@ -34,8 +34,6 @@ process AUGUSTUS_SPLIT {
     def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
 
     """
-    AUGUSTUS_CONFIG_PATH=$augustus_model
-
     randomSplit.pl \\
         ${prefix}.initial_model.filtered.genbank \\
         $split_size
