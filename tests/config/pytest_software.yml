@@ -34,6 +34,10 @@ augustus/pretrained:
   - software/augustus/pretrained/**
   - tests/software/augustus/pretrained/**
 
+augustus/split:
+  - software/augustus/split/**
+  - tests/software/augustus/split/**
+
 augustus/train:
   - software/augustus/train/**
   - tests/software/augustus/train/**
