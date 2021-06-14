@@ -30,6 +30,10 @@ augustus/newspecies:
   - software/augustus/newspecies/**
   - tests/software/augustus/newspecies/**
 
+augustus/optimize:
+  - software/augustus/optimize/**
+  - tests/software/augustus/optimize/**
+
 augustus/pretrained:
   - software/augustus/pretrained/**
   - tests/software/augustus/pretrained/**
