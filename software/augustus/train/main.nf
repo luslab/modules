@@ -27,7 +27,7 @@ process AUGUSTUS_TRAIN {
     output:
     tuple val(species), path("config/"), emit: augustus_model
     path "*.model.txt"      , emit: model_txt
-    path "*.non_standard_genes.txt", emit: stop_txt
+    path "*.non_standard_genes.txt", emit: nonstandard_txt
     path "*.stop_codon_freq.txt", emit: stop_txt
     path "*.version.txt"    , emit: version
 
