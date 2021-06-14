@@ -25,6 +25,8 @@ process AUGUSTUS_SPLIT {
     val split_size
 
     output:
+    // Note that the metadata is attached to both, only to simplify the workflow that this process would
+    // be used in. None of the AUGUSTUS processes ought to change the contents of the metadata.
     tuple val(meta), path("*.train.genbank"), emit: train_genbank
     tuple val(meta), path("*.test.genbank"), emit: test_genbank
     path "*.version.txt"  , emit: version
