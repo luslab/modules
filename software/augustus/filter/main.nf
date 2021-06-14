@@ -8,7 +8,7 @@ def VERSION = '3.4.0'
 
 process AUGUSTUS_FILTER {
     tag "$meta.id"
-    label 'process_medium'
+    label 'process_low'
     publishDir "${params.outdir}",
         mode: params.publish_dir_mode,
         saveAs: { filename -> saveFiles(filename:filename, options:params.options, publish_dir:getSoftwareName(task.process), meta:meta, publish_by_meta:['id']) }
@@ -27,11 +27,8 @@ process AUGUSTUS_FILTER {
 
     output:
     tuple val(meta), path("*.filtered.genbank"), emit: genbank
-    tuple val(species), path("config/"), emit: augustus_model
     path "*.bad_genes.txt"      , emit: bad_genes_txt
     path "*.remaining_genes.txt", emit: remaining_genes_txt
-    path "*.filtered_model.txt" , emit: model_txt
-    path "*.stop_codons.txt.txt", emit: stop_txt
     path "*.version.txt"        , emit: version
 
     script:
@@ -58,14 +55,6 @@ process AUGUSTUS_FILTER {
     grep \\
         -c LOCUS $genbank \\
         ${prefix}.filtered.genbank > ${prefix}.remaining_genes.txt
-
-    etraining \\
-        --species=$species \\
-        ${prefix}.filtered.genbank > ${prefix}.filtered_model.txt
-
-    tail -n 6 \\
-        ${prefix}.filtered_model.txt \\
-        | head -n 3 > ${prefix}.stop_codons.txt
 
     echo $VERSION >${software}.version.txt
     """
