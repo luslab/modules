@@ -1,37 +1,50 @@
 name: augustus_split
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: This input to this process is a genbank file containing gene models for training an AUGUSTUS model, typically the output of AUGUSTUS_FILTER. The input is split into two output genbank files for training and testing AUGUSTUS gene prediction models.
 keywords:
-  - sort
+  - AUGUSTUS
+  - gene prediction
+  - annotation
 tools:
   - augustus:
-      ## TODO nf-core: Add a description and other details for the software below
       description: AUGUSTUS is a gene prediction program for eukaryotes written by Mario Stanke and Oliver Keller. It can be used as an ab initio program, which means it bases its prediction purely on the sequence. AUGUSTUS may also incorporate hints on the gene structure coming from extrinsic sources such as EST, MS/MS, protein alignments and synthenic genomic alignments.
-      homepage: None
-      documentation: None
-      tool_dev_url: None
-      doi: ""
+      homepage: http://bioinf.uni-greifswald.de/augustus/
+      documentation: https://github.com/Gaius-Augustus/Augustus
+      tool_dev_url: https://github.com/Gaius-Augustus/Augustus
+      doi: "10.1093/bioinformatics/btn013"
       licence: ['Artistic Licence']
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - genbank:
       type: file
-      description: BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: A genbank file used to train an AUGUSTUS model. Typically this is the output of AUGUSTUS_FILTER.
+      pattern: "*{.gb,.gbk,.genbank}"
+  - split_size:
+      type: integer
+      description: A value specifying the split size for splitting training and test sets. The AUGUSTUS authors recommend a default of 200.
 
-## TODO nf-core: Add a description of all of the variables used as output
 output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
   - version:
       type: file
       description: File containing software version
       pattern: "*.{version.txt}"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
+  - train_genbank:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: A subsetted genbank file for training an AUGUSTUS gene prediction model.
+      pattern: "*{.gb,.gbk,.genbank}"
+  - test_genbank:
+      type: file
+      description: A subsetted genbank file for testing an AUGUSTUS gene prediction model.
+      pattern: "*{.gb,.gbk,.genbank}"
 
 authors:
   - "@mjmansfi"
