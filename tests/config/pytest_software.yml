@@ -18,6 +18,10 @@ artic/minion:
   - software/artic/minion/**
   - tests/software/artic/minion/**
 
+augustus/copymodel:
+  - software/augustus/copymodel/**
+  - tests/software/augustus/copymodel/**
+
 bandage/image:
   - software/bandage/image/**
   - tests/software/bandage/image/**
@@ -490,7 +494,7 @@ pairtools/parse:
 pairtools/restrict:
   - software/pairtools/restrict/**
   - tests/software/pairtools/restrict/**
-  
+
 pairtools/sort:
   - software/pairtools/sort/**
   - tests/software/pairtools/sort/**
