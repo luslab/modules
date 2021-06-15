@@ -32,6 +32,13 @@ process AUGUSTUS_PRETRAINED {
     def software = getSoftwareName(task.process)
 
     """
+    # Copy config files out of the location in the AUGUSTUS image.
+    mkdir config
+    cp -r /usr/local/config/cgp       config
+    cp -r /usr/local/config/extrinsic config
+    cp -r /usr/local/config/model     config
+    cp -r /usr/local/config/profile   config
+
     mkdir -p config/species/$species
     cp -r $augustus_model/* config/species/$species
 
