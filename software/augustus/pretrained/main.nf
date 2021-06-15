@@ -21,8 +21,8 @@ process AUGUSTUS_PRETRAINED {
     }
 
     input:
-    path augustus_model
     val species
+    path augustus_model
 
     output:
     tuple val(species), path("config/"), emit: augustus_model
