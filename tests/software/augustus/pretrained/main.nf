@@ -7,7 +7,7 @@ include { AUGUSTUS_PRETRAINED } from '../../../../software/augustus/pretrained/m
 
 workflow test_augustus_pretrained {
 
-    augustus_model = file('https://raw.githubusercontent.com/mjmansfi/test-datasets/modules/data/genomics/sarscov2/genome/db/augustus.tar.gz', checkIfExists: true)
+    augustus_model = file('https://raw.githubusercontent.com/mjmansfi/test-datasets/modules/data/genomics/sarscov2/genome/db/augustus/sars_cov_2.tar.gz', checkIfExists: true)
 
     UNTAR( augustus_model )
     AUGUSTUS_PRETRAINED ( 'sars_cov_2', UNTAR.out.untar )

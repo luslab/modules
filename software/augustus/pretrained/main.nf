@@ -22,7 +22,7 @@ process AUGUSTUS_PRETRAINED {
 
     input:
     val species
-    path augustus_model
+    path augustus_species_model
 
     output:
     tuple val(species), path("config/"), emit: augustus_model
@@ -39,8 +39,8 @@ process AUGUSTUS_PRETRAINED {
     cp -r /usr/local/config/model     config
     cp -r /usr/local/config/profile   config
 
-    mkdir -p config/species/$species
-    cp -r $augustus_model/* config/species/$species
+    mkdir -p config/species
+    cp -r $augustus_species_model config/species/$species
 
     echo $VERSION >${software}.version.txt
     """
