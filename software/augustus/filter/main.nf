@@ -23,7 +23,6 @@ process AUGUSTUS_FILTER {
     input:
     tuple val(meta), path(genbank)
     tuple val(species), path(augustus_model)
-    path model_txt
 
     output:
     tuple val(meta), path("*.filtered.genbank"), emit: genbank
@@ -49,7 +48,7 @@ process AUGUSTUS_FILTER {
     # Exclude bad genes from the genbank file.
     filterGenes.pl \\
         ${prefix}.bad_genes.txt \\
-        $model_txt > ${prefix}.filtered.genbank
+        $genbank > ${prefix}.filtered.genbank
 
     # Make sure that the filtered set does not exclude too many genes.
     grep \\
