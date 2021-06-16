@@ -30,6 +30,10 @@ augustus/filter:
   - software/augustus/filter/**
   - tests/software/augustus/filter/**
 
+augustus/gff2gb:
+  - software/augustus/gff2gb/**
+  - tests/software/augustus/gff2gb/**
+
 augustus/newspecies:
   - software/augustus/newspecies/**
   - tests/software/augustus/newspecies/**
