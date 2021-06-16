@@ -36,20 +36,21 @@ process AUGUSTUS_TRAIN {
     def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
 
     """
-    AUGUSTUS_CONFIG_PATH=$augustus_model
+    export AUGUSTUS_CONFIG_PATH=\$(pwd)/config
 
-    # Train an initial model.
-    etraining \\
-        --species=$species \\
-        $genbank > ${prefix}.model.txt 2>&1
+    # Train a model.
+    etraining --species=$species $genbank > ${prefix}.model.txt
 
-    # Make sure the stop codon frequencies make sense.
-    grep \\
-        -c "Variable stopCodonExcludedFromCDS set right" \\
-        ${prefix}.model.txt > ${prefix}.non_standard_genes.txt 2>&1
+    # Note non-standard gene structures.
+    # N.B. - The funny grep syntax is to prevent raising exit code 1 on no match.
+    cat ${prefix}.model.txt \\
+        | { grep -c "Variable stopCodonExcludedFromCDS set right" || true; } \\
+        > ${prefix}.non_standard_genes.txt
 
+    # Note stop codon frequencies.
     tail -n 6  ${prefix}.model.txt \\
-        | head -n 3 > ${prefix}.stop_codon_freq.txt
+        | head -n 3 \\
+        > ${prefix}.stop_codon_freq.txt
 
     echo $VERSION >${software}.version.txt
     """
