@@ -1,5 +1,5 @@
-- name: augustus train
-  command: nextflow run ./tests/software/augustus/train -entry test_augustus_train -c tests/config/nextflow.config
+- name: augustus train test_augustus_train
+  command: nextflow run tests/software/augustus/train -entry test_augustus_train -c tests/config/nextflow.config
   tags:
     - augustus
     - augustus/train
@@ -18,14 +18,18 @@
       md5sum: 324ec6d805f50fadda7fe5a07bad9f1a
     - path: output/augustus/config/cgp/log_reg_parameters_s_aureus.cfg
       md5sum: 2ad3b9f8ce1a9ffedae11f415559d911
-    - path: output/augustus/config/extrinsic/extrinsic.cfg
-      md5sum: 795ca517cfa18b2edfcf0d4ac6e55d19
     - path: output/augustus/config/extrinsic/extrinsic-cgp.cfg
       md5sum: b3107b05647d46c8854754489fdfb1e1
-    - path: output/augustus/config/extrinsic/extrinsic.E.cfg
-      md5sum: 15e3bb74a5236c65b2c4eb62556d2957
     - path: output/augustus/config/extrinsic/extrinsic.E.XNT.cfg
       md5sum: 7e24dcba0a57aa31a734b1343cc45690
+    - path: output/augustus/config/extrinsic/extrinsic.E.cfg
+      md5sum: 15e3bb74a5236c65b2c4eb62556d2957
+    - path: output/augustus/config/extrinsic/extrinsic.M.RM.E.W.P.cfg
+      md5sum: 3c03123266a6c52c2a5362137595f3c6
+    - path: output/augustus/config/extrinsic/extrinsic.M.RM.E.W.cfg
+      md5sum: 9397fb28b4b1a555f53f2a5ceca0e5cd
+    - path: output/augustus/config/extrinsic/extrinsic.M.RM.PB.cfg
+      md5sum: 824958e9403d7ec3fd8a25e2a65309ba
     - path: output/augustus/config/extrinsic/extrinsic.ME.cfg
       md5sum: 950cc9b15b1d0d25fc378b8dcece5be4
     - path: output/augustus/config/extrinsic/extrinsic.MEMS.cfg
@@ -34,38 +38,34 @@
       md5sum: bfcbe48ee3720f9fd90ddae9bc780244
     - path: output/augustus/config/extrinsic/extrinsic.MPE.cfg
       md5sum: 0aa603d5ac9577086f8ae06782fa2ff1
-    - path: output/augustus/config/extrinsic/extrinsic.M.RM.E.W.cfg
-      md5sum: 9397fb28b4b1a555f53f2a5ceca0e5cd
-    - path: output/augustus/config/extrinsic/extrinsic.M.RM.E.W.P.cfg
-      md5sum: 3c03123266a6c52c2a5362137595f3c6
-    - path: output/augustus/config/extrinsic/extrinsic.M.RM.PB.cfg
-      md5sum: 824958e9403d7ec3fd8a25e2a65309ba
     - path: output/augustus/config/extrinsic/extrinsic.MT.cfg
       md5sum: 6d95c77679bfe62bb4e2d4f3bb9ce753
+    - path: output/augustus/config/extrinsic/extrinsic.cfg
+      md5sum: 795ca517cfa18b2edfcf0d4ac6e55d19
     - path: output/augustus/config/model/constraints_shadow_partial.txt
       md5sum: 5d758fc3d62dd2842358f81f341c0475
     - path: output/augustus/config/model/constraints_shadow_partial_utr.txt
       md5sum: c05f3e6cc68fa91b20f2b4abbb9eb075
-    - path: output/augustus/config/model/ovlp_len_archaea.pbl
-      md5sum: 4e2eb614eb01bbc9aa43681ee829241d
     - path: output/augustus/config/model/ovlp_len.pbl
       md5sum: ccccae3384aa1c8b8dc376b367faa9b9
+    - path: output/augustus/config/model/ovlp_len_archaea.pbl
+      md5sum: 4e2eb614eb01bbc9aa43681ee829241d
+    - path: output/augustus/config/model/states_shadow.cfg
+      md5sum: 166aac1c267761cf0b1cf626f4f31fa5
     - path: output/augustus/config/model/states_shadow_2igenic.cfg
       md5sum: b46ebbbdad78c3c61ef36c7c537796cb
     - path: output/augustus/config/model/states_shadow_bacterium.cfg
       md5sum: 972e3cdfd95f0d9ff62f465cfdc2159b
-    - path: output/augustus/config/model/states_shadow.cfg
-      md5sum: 166aac1c267761cf0b1cf626f4f31fa5
     - path: output/augustus/config/model/states_shadow_intronless.cfg
       md5sum: e73dc75a27243ac5432e75fcc3464b33
     - path: output/augustus/config/model/states_shadow_utr.cfg
       md5sum: e16c420c561a7544c2174a485afcf6b4
     - path: output/augustus/config/model/states_shadow_utr_nc.cfg
       md5sum: e0cb4c575d53932704263cb3c92ec7fa
-    - path: output/augustus/config/model/states_singlestrand_2igenic.cfg
-      md5sum: 2d80449c70a3bd5340177e78b5a430f1
     - path: output/augustus/config/model/states_singlestrand.cfg
       md5sum: 5e36a34b0048182dfd6ece1d01e2c8ed
+    - path: output/augustus/config/model/states_singlestrand_2igenic.cfg
+      md5sum: 2d80449c70a3bd5340177e78b5a430f1
     - path: output/augustus/config/model/trans_shadow_atleastone.pbl
       md5sum: 042b778f75c2dddc7f59240cd4274f6b
     - path: output/augustus/config/model/trans_shadow_bacterium.pbl
@@ -80,10 +80,10 @@
       md5sum: be11d14289b4e3dc81722ac0a8ac9dc5
     - path: output/augustus/config/model/trans_shadow_partial.pbl
       md5sum: 36a935321c1c17723fe2300c39f81e6d
-    - path: output/augustus/config/model/trans_shadow_partial_utr_nc.pbl
-      md5sum: 6c001e1cf5e57da028293b3da22851c8
     - path: output/augustus/config/model/trans_shadow_partial_utr.pbl
       md5sum: db859ed730b0aee9f105f11aa08cd829
+    - path: output/augustus/config/model/trans_shadow_partial_utr_nc.pbl
+      md5sum: 6c001e1cf5e57da028293b3da22851c8
     - path: output/augustus/config/model/trans_singlestrand_atleastone.pbl
       md5sum: e0bf238bb7a66322428952764f42c763
     - path: output/augustus/config/model/trans_singlestrand_complete.pbl
@@ -137,6 +137,8 @@
     - path: output/augustus/config/species/template_prokaryotic/template_prokaryotic_weightmatrix.txt
       md5sum: b62b05e9562d3bb90788487884814cb1
     - path: output/augustus/test.model.txt
+      contains:
+      - 'Quantiles'
     - path: output/augustus/test.non_standard_genes.txt
       md5sum: 897316929176464ebc9ad085f31e7284
     - path: output/augustus/test.stop_codon_freq.txt
@@ -155,14 +157,18 @@
       md5sum: 324ec6d805f50fadda7fe5a07bad9f1a
     - path: output/untar/config/cgp/log_reg_parameters_s_aureus.cfg
       md5sum: 2ad3b9f8ce1a9ffedae11f415559d911
-    - path: output/untar/config/extrinsic/extrinsic.cfg
-      md5sum: 795ca517cfa18b2edfcf0d4ac6e55d19
     - path: output/untar/config/extrinsic/extrinsic-cgp.cfg
       md5sum: b3107b05647d46c8854754489fdfb1e1
-    - path: output/untar/config/extrinsic/extrinsic.E.cfg
-      md5sum: 15e3bb74a5236c65b2c4eb62556d2957
     - path: output/untar/config/extrinsic/extrinsic.E.XNT.cfg
       md5sum: 7e24dcba0a57aa31a734b1343cc45690
+    - path: output/untar/config/extrinsic/extrinsic.E.cfg
+      md5sum: 15e3bb74a5236c65b2c4eb62556d2957
+    - path: output/untar/config/extrinsic/extrinsic.M.RM.E.W.P.cfg
+      md5sum: 3c03123266a6c52c2a5362137595f3c6
+    - path: output/untar/config/extrinsic/extrinsic.M.RM.E.W.cfg
+      md5sum: 9397fb28b4b1a555f53f2a5ceca0e5cd
+    - path: output/untar/config/extrinsic/extrinsic.M.RM.PB.cfg
+      md5sum: 824958e9403d7ec3fd8a25e2a65309ba
     - path: output/untar/config/extrinsic/extrinsic.ME.cfg
       md5sum: 950cc9b15b1d0d25fc378b8dcece5be4
     - path: output/untar/config/extrinsic/extrinsic.MEMS.cfg
@@ -171,38 +177,34 @@
       md5sum: bfcbe48ee3720f9fd90ddae9bc780244
     - path: output/untar/config/extrinsic/extrinsic.MPE.cfg
       md5sum: 0aa603d5ac9577086f8ae06782fa2ff1
-    - path: output/untar/config/extrinsic/extrinsic.M.RM.E.W.cfg
-      md5sum: 9397fb28b4b1a555f53f2a5ceca0e5cd
-    - path: output/untar/config/extrinsic/extrinsic.M.RM.E.W.P.cfg
-      md5sum: 3c03123266a6c52c2a5362137595f3c6
-    - path: output/untar/config/extrinsic/extrinsic.M.RM.PB.cfg
-      md5sum: 824958e9403d7ec3fd8a25e2a65309ba
     - path: output/untar/config/extrinsic/extrinsic.MT.cfg
       md5sum: 6d95c77679bfe62bb4e2d4f3bb9ce753
+    - path: output/untar/config/extrinsic/extrinsic.cfg
+      md5sum: 795ca517cfa18b2edfcf0d4ac6e55d19
     - path: output/untar/config/model/constraints_shadow_partial.txt
       md5sum: 5d758fc3d62dd2842358f81f341c0475
     - path: output/untar/config/model/constraints_shadow_partial_utr.txt
       md5sum: c05f3e6cc68fa91b20f2b4abbb9eb075
-    - path: output/untar/config/model/ovlp_len_archaea.pbl
-      md5sum: 4e2eb614eb01bbc9aa43681ee829241d
     - path: output/untar/config/model/ovlp_len.pbl
       md5sum: ccccae3384aa1c8b8dc376b367faa9b9
+    - path: output/untar/config/model/ovlp_len_archaea.pbl
+      md5sum: 4e2eb614eb01bbc9aa43681ee829241d
+    - path: output/untar/config/model/states_shadow.cfg
+      md5sum: 166aac1c267761cf0b1cf626f4f31fa5
     - path: output/untar/config/model/states_shadow_2igenic.cfg
       md5sum: b46ebbbdad78c3c61ef36c7c537796cb
     - path: output/untar/config/model/states_shadow_bacterium.cfg
       md5sum: 972e3cdfd95f0d9ff62f465cfdc2159b
-    - path: output/untar/config/model/states_shadow.cfg
-      md5sum: 166aac1c267761cf0b1cf626f4f31fa5
     - path: output/untar/config/model/states_shadow_intronless.cfg
       md5sum: e73dc75a27243ac5432e75fcc3464b33
     - path: output/untar/config/model/states_shadow_utr.cfg
       md5sum: e16c420c561a7544c2174a485afcf6b4
     - path: output/untar/config/model/states_shadow_utr_nc.cfg
       md5sum: e0cb4c575d53932704263cb3c92ec7fa
-    - path: output/untar/config/model/states_singlestrand_2igenic.cfg
-      md5sum: 2d80449c70a3bd5340177e78b5a430f1
     - path: output/untar/config/model/states_singlestrand.cfg
       md5sum: 5e36a34b0048182dfd6ece1d01e2c8ed
+    - path: output/untar/config/model/states_singlestrand_2igenic.cfg
+      md5sum: 2d80449c70a3bd5340177e78b5a430f1
     - path: output/untar/config/model/trans_shadow_atleastone.pbl
       md5sum: 042b778f75c2dddc7f59240cd4274f6b
     - path: output/untar/config/model/trans_shadow_bacterium.pbl
@@ -217,10 +219,10 @@
       md5sum: be11d14289b4e3dc81722ac0a8ac9dc5
     - path: output/untar/config/model/trans_shadow_partial.pbl
       md5sum: 36a935321c1c17723fe2300c39f81e6d
-    - path: output/untar/config/model/trans_shadow_partial_utr_nc.pbl
-      md5sum: 6c001e1cf5e57da028293b3da22851c8
     - path: output/untar/config/model/trans_shadow_partial_utr.pbl
       md5sum: db859ed730b0aee9f105f11aa08cd829
+    - path: output/untar/config/model/trans_shadow_partial_utr_nc.pbl
+      md5sum: 6c001e1cf5e57da028293b3da22851c8
     - path: output/untar/config/model/trans_singlestrand_atleastone.pbl
       md5sum: e0bf238bb7a66322428952764f42c763
     - path: output/untar/config/model/trans_singlestrand_complete.pbl
