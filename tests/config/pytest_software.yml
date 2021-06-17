@@ -22,6 +22,10 @@ augustus/augustus:
   - software/augustus/augustus/**
   - tests/software/augustus/augustus/**
 
+augustus/bam2hints:
+  - software/augustus/bam2hints/**
+  - tests/software/augustus/bam2hints/**
+
 augustus/copymodel:
   - software/augustus/copymodel/**
   - tests/software/augustus/copymodel/**
