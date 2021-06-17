@@ -33,12 +33,12 @@ process AUGUSTUS_AUGUSTUS {
     def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
 
     """
-    AUGUSTUS_CONFIG_PATH=$augustus_model
+    export AUGUSTUS_CONFIG_PATH=\$(pwd)/config
 
     augustus \\
         $options.args \\
         --species=$species \\
-        $fasta
+        $fasta > ${prefix}.gff
 
     echo $VERSION >${software}.version.txt
     """

@@ -1,5 +1,5 @@
 name: augustus_augustus
-description: This process finds genes in a nucleotide FASTA file using an AUGUSTUS gene prediction model. The inputs are a nucleotide FASTA file to search and an AUGUSTUS model. The model will be the output of one of: AUGUSTUS_COPYMODEL, AUGUSTUS_PRETRAINED, or AUGUSTUS_OPTIMIZE, as these processes output the model in a Nextflow-friendly channel-wise manner.
+description: This process finds genes in a nucleotide FASTA file using an AUGUSTUS gene prediction model. The inputs are a nucleotide FASTA file to search and an AUGUSTUS model. The model will be the output of one of AUGUSTUS_COPYMODEL, AUGUSTUS_PRETRAINED, or AUGUSTUS_OPTIMIZE, as these processes output the model in a Nextflow-friendly channel-wise manner.
 keywords:
   - AUGUSTUS
   - gene prediction
