@@ -34,7 +34,7 @@ process AUGUSTUS_OPTIMIZE {
     def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
 
     """
-    AUGUSTUS_CONFIG_PATH=$augustus_model
+    export AUGUSTUS_CONFIG_PATH=\$(pwd)/config
 
     # This script optimizes the metaparameters of the AUGUSTUS model.
     # This should only be ran on the training set, not any old genbank file.
