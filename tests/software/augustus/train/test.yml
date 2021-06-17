@@ -137,7 +137,6 @@
     - path: output/augustus/config/species/template_prokaryotic/template_prokaryotic_weightmatrix.txt
       md5sum: b62b05e9562d3bb90788487884814cb1
     - path: output/augustus/test.model.txt
-      md5sum: 1f3e2ade7fecace6d63f8075bc728b9c
     - path: output/augustus/test.non_standard_genes.txt
       md5sum: 897316929176464ebc9ad085f31e7284
     - path: output/augustus/test.stop_codon_freq.txt
