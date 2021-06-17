@@ -48,6 +48,7 @@ process AUGUSTUS_NEWSPECIES {
     export AUGUSTUS_CONFIG_PATH=\$(pwd)/config
 
     new_species.pl \\
+        $options.args \\
         --species=$species
 
     echo $VERSION >${software}.version.txt
