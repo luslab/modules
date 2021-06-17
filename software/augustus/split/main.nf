@@ -26,7 +26,10 @@ process AUGUSTUS_SPLIT {
 
     output:
     // Note that the metadata is attached to both, only to simplify the workflow that this process would
-    // be used in. None of the AUGUSTUS processes ought to change the contents of the metadata.
+    // be used in. No AUGUSTUS processes (which are the only context in which these processes are useful)
+    // ought to change the contents of the metadata.
+    // It could be written without a metadata pair, but the input genbank file will likely contain
+    // meta from most workflows (and the ${prefix is nice.)
     tuple val(meta), path("*.train.genbank"), emit: train_genbank
     tuple val(meta), path("*.test.genbank"), emit: test_genbank
     path "*.version.txt"  , emit: version
@@ -37,11 +40,11 @@ process AUGUSTUS_SPLIT {
 
     """
     randomSplit.pl \\
-        ${prefix}.initial_model.filtered.genbank \\
+        $genbank \\
         $split_size
 
-    mv ${prefix}.genbank.test  ${prefix}.test.genbank
-    mv ${prefix}.genbank.train ${prefix}.train.genbank
+    mv ${genbank}.test  ${prefix}.test.genbank
+    mv ${genbank}.train ${prefix}.train.genbank
 
     echo $VERSION >${software}.version.txt
     """
