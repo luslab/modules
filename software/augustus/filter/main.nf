@@ -35,7 +35,7 @@ process AUGUSTUS_FILTER {
     def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
 
     """
-    AUGUSTUS_CONFIG_PATH=$augustus_model
+    export AUGUSTUS_CONFIG_PATH=\$(pwd)/config
 
     # Get a list of bad genes so that they can be excluded.
     etraining \\
