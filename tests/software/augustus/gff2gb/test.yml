@@ -1,10 +1,8 @@
-## TODO nf-core: Please run the following command to build this file:
-#                nf-core modules create-test-yml augustus/gff2gb
-- name: augustus gff2gb
-  command: nextflow run ./tests/software/augustus/gff2gb -entry test_augustus_gff2gb -c tests/config/nextflow.config
+- name: augustus gff2gb test_augustus_gff2gb
+  command: nextflow run tests/software/augustus/gff2gb -entry test_augustus_gff2gb -c tests/config/nextflow.config
   tags:
     - augustus
     - augustus/gff2gb
   files:
-    - path: output/augustus/test.bam
-      md5sum: e667c7caad0bc4b7ac383fd023c654fc
+    - path: output/augustus/test.genbank
+      md5sum: 2b075070d9fe98877fb6c613b9d72a7e
