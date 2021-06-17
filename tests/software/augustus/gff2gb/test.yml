@@ -4,5 +4,7 @@
     - augustus
     - augustus/gff2gb
   files:
+    - path: output/augustus/test.flanking_size.txt
+      md5sum: f9d5296aa057386e611b77be0c1f3bfc
     - path: output/augustus/test.genbank
       md5sum: 2b075070d9fe98877fb6c613b9d72a7e

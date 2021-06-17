@@ -23,21 +23,27 @@ process AUGUSTUS_GFF2GB {
     input:
     tuple val(meta), path(fasta)
     path gxf
-    val flanking_size
 
     output:
     tuple val(meta), path("*.genbank"), emit: genbank
-    path "*.version.txt"          , emit: version
+    path "*.flanking_size.txt"        , emit: txt
+    path "*.version.txt"              , emit: version
 
     script:
     def software = getSoftwareName(task.process)
     def prefix   = options.suffix ? "${meta.id}${options.suffix}" : "${meta.id}"
 
     """
+    computeFlankingRegion.pl \\
+        $gxf > ${prefix}.flanking_size.txt
+
+    # This command excises the value needed from computeFlankingRegion.pl
+    FLANKINGSIZE=\$(tail -n 1 *.flanking_size.txt | cut -d \" \" -f 5)
+
     gff2gbSmallDNA.pl \\
         $gxf \\
         $fasta \\
-        $flanking_size \\
+        \$FLANKINGSIZE \\
         ${prefix}.genbank
 
     echo $VERSION >${software}.version.txt

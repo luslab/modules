@@ -11,5 +11,5 @@ workflow test_augustus_gff2gb {
     gxf = file(params.test_data['sarscov2']['genome']['genome_gff3'], checkIfExists: true)
 
     // The "flanking_size" value here was taken from the output of computeFlankingRegion.pl
-    AUGUSTUS_GFF2GB ( input, gxf, 1463 )
+    AUGUSTUS_GFF2GB ( input, gxf )
 }
