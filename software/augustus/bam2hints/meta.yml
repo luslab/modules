@@ -1,37 +1,33 @@
 name: augustus_bam2hints
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: This process copies one of the species gene prediction models included with AUGUSTUS out of its path. It outputs the AUGUSTUS model in a standardized output channel format for use with the AUGUSTUS_AUGUSTUS gene prediction process.
 keywords:
-  - sort
+  - AUGUSTUS
+  - gene prediction
+  - annotation
 tools:
   - augustus:
-      ## TODO nf-core: Add a description and other details for the software below
       description: AUGUSTUS is a gene prediction program for eukaryotes written by Mario Stanke and Oliver Keller. It can be used as an ab initio program, which means it bases its prediction purely on the sequence. AUGUSTUS may also incorporate hints on the gene structure coming from extrinsic sources such as EST, MS/MS, protein alignments and synthenic genomic alignments.
-      homepage: None
-      documentation: None
-      tool_dev_url: None
-      doi: ""
+      homepage: http://bioinf.uni-greifswald.de/augustus/
+      documentation: https://github.com/Gaius-Augustus/Augustus
+      tool_dev_url: https://github.com/Gaius-Augustus/Augustus
+      doi: "10.1093/bioinformatics/btn013"
       licence: ['Artistic Licence']
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  ## TODO nf-core: Delete / customise this example input
   - bam:
       type: file
-      description: BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: Sorted BAM/CRAM/SAM file
+      pattern: "*.{bam}"
 
-## TODO nf-core: Add a description of all of the variables used as output
 output:
   - version:
       type: file
       description: File containing software version
       pattern: "*.{version.txt}"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
+  - gff:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: A GFF file containing gene hints - by default, only the introns - for training an AUGUSTUS gene model predictor.
+      pattern: "*.{gff, gff3}"
 
 authors:
   - "@mjmansfi"

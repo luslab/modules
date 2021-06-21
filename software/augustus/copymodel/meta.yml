@@ -1,5 +1,5 @@
 name: augustus_copymodel
-description: This process copies one of the species gene prediction models included with AUGUSTUS out of its path. It outputs the AUGUSTUS model in a standardized output channel format for use with the AUGUSTUS_AUGUSTUS gene prediction process.
+description: This process copies one of the species gene prediction models included with AUGUSTUS out of its path in the image. It outputs the AUGUSTUS model in a standardized output channel format for use with the AUGUSTUS_AUGUSTUS gene prediction process.
 keywords:
   - AUGUSTUS
   - gene prediction
