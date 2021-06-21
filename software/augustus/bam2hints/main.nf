@@ -4,6 +4,8 @@ include { initOptions; saveFiles; getSoftwareName } from './functions'
 params.options = [:]
 options        = initOptions(params.options)
 
+def VERSION = '3.4.0'
+
 process AUGUSTUS_BAM2HINTS {
     tag '$bam'
     label 'process_medium'
@@ -34,6 +36,6 @@ process AUGUSTUS_BAM2HINTS {
         --in=$bam \\
         --out=hints.gff
 
-    echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//' > ${software}.version.txt
+    echo $VERSION >${software}.version.txt
     """
 }
