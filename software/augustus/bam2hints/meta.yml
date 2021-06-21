@@ -1,5 +1,5 @@
 name: augustus_bam2hints
-description: This process copies one of the species gene prediction models included with AUGUSTUS out of its path. It outputs the AUGUSTUS model in a standardized output channel format for use with the AUGUSTUS_AUGUSTUS gene prediction process.
+description: This process extracts AUGUSTUS gene hints, that is, intron structures, out of a sorted BAM file and outputs the hints in GFF format.
 keywords:
   - AUGUSTUS
   - gene prediction
