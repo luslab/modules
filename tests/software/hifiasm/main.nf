@@ -14,3 +14,5 @@ workflow test_hifiasm_hifi_only {
             [ file("${launchDir}/tests/data/genomics/homo_sapiens/fastq/SRR10382244_mapped_to_contig.fastq", checkIfExists: true) ] ]
     HIFIASM ( input )
 }
+
+
