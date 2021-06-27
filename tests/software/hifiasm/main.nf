@@ -23,6 +23,7 @@ workflow test_hifiasm_hifi_only {
 /* 
  * Test with Hi-C reads for phasing
  */
+// Hifiasm crashes with segfault on this test
 // workflow test_hifiasm_with_hic {
 
 //     def input = []
