@@ -53,7 +53,7 @@ process HIFIASM {
             --h1 ${hic_reads[0]} \\
             --h2 ${hic_reads[1]} \\
             ${prefix}.fastq.gz
-        
+
         hifiasm --version > ${software}.version.txt || exit 0
         """
     } else if (use_parental_kmers) {
@@ -67,7 +67,7 @@ process HIFIASM {
             -1 $paternal_kmer_dump \\
             -2 $maternal_kmer_dump \\
             ${prefix}.fastq.gz
-        
+
         hifiasm --version > ${software}.version.txt || exit 0
         """
     } else {
