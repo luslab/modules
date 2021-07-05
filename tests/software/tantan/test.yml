@@ -1,0 +1,15 @@
+- name: tantan test_tantan_fasta
+  command: nextflow run tests/software/tantan -entry test_tantan_fasta -c tests/config/nextflow.config
+  tags:
+    - tantan
+  files:
+    - path: output/tantan/test.fasta
+      md5sum: 1e4e725cba8a0e15a25ee690fad20810
+
+- name: tantan test_tantan_bed
+  command: nextflow run tests/software/tantan -entry test_tantan_bed -c tests/config/nextflow.config
+  tags:
+    - tantan
+  files:
+    - path: output/tantan/test.txt
+      md5sum: b63fce06c92b9e4d7ecfcf8f93aa71ad

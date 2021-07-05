@@ -739,6 +739,10 @@ tabix/tabix:
   - software/tabix/tabix/**
   - tests/software/tabix/tabix/**
 
+tantan:
+  - software/tantan/**
+  - tests/software/tantan/**
+
 tiddit/sv:
   - software/tiddit/sv/**
   - tests/software/tiddit/sv/**
